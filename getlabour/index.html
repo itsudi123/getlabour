@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetLabour - Hire Trusted Workers Near You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2C3E9E;
+            --accent: #F8C231;
+            --dark: #1A1A1A;
+            --light: #F5F5F5;
+            --rating: #FFB800;
+            --success: #4CAF50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .auth-buttons .btn {
+            margin-left: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-bar {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .search-bar button {
+            padding: 1rem 2rem;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* How It Works Section */
+        .section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--dark);
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Services Section */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Workers Section */
+        .workers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .worker-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .worker-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .worker-info {
+            padding: 1.5rem;
+        }
+
+        .worker-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .worker-rating {
+            color: var(--rating);
+            margin-bottom: 0.5rem;
+        }
+
+        .worker-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-tag {
+            background: #E0E0E0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        .verified-badge {
+            background: var(--success);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            display: flex;
+            overflow-x: auto;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .testimonial-card {
+            min-width: 300px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-size: cover;
+            margin-right: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul li a {
+            color: #CCCCCC;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            margin-top: 2rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 99;
+            cursor: pointer;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links, .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+
+            .search-bar {
+                flex-direction: column;
+                border-radius: 8px;
+            }
+
+            .search-bar input, .search-bar button {
+                width: 100%;
+                border-radius: 0;
+            }
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: var(--primary);
+            color: white;
+            padding: 2rem 1rem;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .sidebar-menu li {
+            margin-bottom: 1rem;
+        }
+
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2rem;
+            background: #F9F9F9;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .stat-card h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .job-list {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .job-list-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #EEE;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-list-items {
+            list-style: none;
+        }
+
+        .job-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid #EEE;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-item:last-child {
+            border-bottom: none;
+        }
+
+        .job-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .job-status {
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-pending {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        .status-completed {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .status-ongoing {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #DDD;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        /* Worker Dashboard */
+        .worker-profile {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .worker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--primary);
+        }
+
+        .worker-details h2 {
+            margin-bottom: 0.5rem;
+        }
+
+        .worker-rating-large {
+            font-size: 1.2rem;
+            color: var(--rating);
+            margin-bottom: 1rem;
+        }
+
+        .worker-bio {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .availability {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .available {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .not-available {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        /* Responsive Dashboard */
+        @media (max-width: 992px) {
+            .dashboard {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Get<span>Labour</span></div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">How It Works</a>
+                <a href="#">Services</a>
+                <a href="#">Workers</a>
+                <a href="#">About Us</a>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">Login</button>
+                <button class="btn btn-primary">Sign Up</button>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Find Trusted Laborers Near You</h1>
+        <p>From home repairs to construction, GetLabour connects you with reliable workers in minutes.</p>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you need?">
+            <input type="text" placeholder="Location">
+            <button>Search</button>
+        </div>
+        <div style="margin-top: 2rem;">
+            <button class="btn btn-primary" style="margin-right: 1rem;">Post a Job</button>
+            <button class="btn btn-outline" style="color: white; border-color: white;">Hire from Nearby</button>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>How GetLabour Works</h2>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>Post Your Job</h3>
+                <p>Describe what you need done and set your budget.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <h3>Choose a Worker</h3>
+                <p>Browse profiles and pick the best match or let AI recommend.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Get It Done</h3>
+                <p>Pay securely only after the job is completed to your satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" style="background: #F9F9F9;">
+        <div class="section-title">
+            <h2>Services We Offer</h2>
+        </div>
+        <div class="services">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-faucet"></i>
+                </div>
+                <h3>Plumber</h3>
+                <p>Fix leaks, install fixtures, and more</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Electrician</h3>
+                <p>Wiring, repairs, installations</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Delivery</h3>
+                <p>Package and goods delivery</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-broom"></i>
+                </div>
+                <h3>Cleaner</h3>
+                <p>Home, office, and deep cleaning</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-hammer"></i>
+                </div>
+                <h3>Construction</h3>
+                <p>Building and renovation work</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-roller"></i>
+                </div>
+                <h3>Painter</h3>
+                <p>Interior and exterior painting</p>
+                <button class="btn btn-primary" style="margin-top: 1rem; padding: 0.5rem 1rem;">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workers Section -->
+    <section class="section">
+        <div class="section-title">
+            <h2>Featured Verified Workers</h2>
+        </div>
+        <div class="workers">
+            <div class="worker-card">
+                <div class="worker-image" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                <div class="worker-info">
+                    <div class="worker-name">Rahul Kumar <span class="verified-badge">Verified</span></div>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        4.8 (127)
+                    </div>
+                    <div class="worker-skills">
+                        <span class="skill-tag">Plumber</span>
+                        <span class="skill-tag">5+ Years</span>
+                        <span class="skill-tag">Pipe Fitting</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <div><i class="fas fa-map-marker-alt"></i> 2km away</div>
+                        <button class="btn btn-primary">Hire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="worker-card">
+                <div class="worker-image" style="background-image: url('https://randomuser.me/api/portraits/men/45.jpg');"></div>
+                <div class="worker-info">
+                    <div class="worker-name">Amit Singh <span class="verified-badge">Verified</span></div>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        5.0 (89)
+                    </div>
+                    <div class="worker-skills">
+                        <span class="skill-tag">Electrician</span>
+                        <span class="skill-tag">7+ Years</span>
+                        <span class="skill-tag">Wiring</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <div><i class="fas fa-map-marker-alt"></i> 1.5km away</div>
+                        <button class="btn btn-primary">Hire Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="worker-card">
+                <div class="worker-image" style="background-image: url('https://randomuser.me/api/portraits/women/65.jpg');"></div>
+                <div class="worker-info">
+                    <div class="worker-name">Priya Sharma <span class="verified-badge">Verified</span></div>
+                    <div class="worker-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        4.9 (156)
+                    </div>
+                    <div class="worker-skills">
+                        <span class="skill-tag">Cleaner</span>
+                        <span class="skill-tag">3+ Years</span>
+                        <span class="skill-tag">Deep Cleaning</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                        <div><i class="fas fa-map-marker-alt"></i> 3km away</div>
+                        <button class="btn btn-primary">Hire Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section" style="background: #F9F9F9;">
+        <div class="section-title">
+            <h2>What Our Customers Say</h2>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "Found a great plumber within minutes who fixed my leak at a reasonable price. No more bargaining headaches!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/32.jpg');"></div>
+                    <div>
+                        <div style="font-weight: 600;">Neha Patel</div>
+                        <div style="font-size: 0.8rem; color: #666;">Homeowner</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "As a small business owner, GetLabour saves me hours searching for reliable workers. The verification system is excellent."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/22.jpg');"></div>
+                    <div>
+                        <div style="font-weight: 600;">Rajesh Mehta</div>
+                        <div style="font-size: 0.8rem; color: #666;">Restaurant Owner</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-text">
+                    "I've used 5 different workers from GetLabour and all were professional and skilled. The rating system works!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar" style="background-image: url('https://randomuser.me/api/portraits/women/45.jpg');"></div>
+                    <div>
+                        <div style="font-weight: 600;">Ananya Reddy</div>
+                        <div style="font-size: 0.8rem; color: #666;">Apartment Manager</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--primary); color: white; text-align: center;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Need Help Now?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Join thousands of satisfied customers who found reliable help in minutes
+        </p>
+        <button class="btn btn-primary" style="background: white; color: var(--primary); font-size: 1.1rem; padding: 1rem 2rem;">
+            Post Your First Job
+        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>GetLabour</h3>
+                <p style="color: #CCCCCC; margin-bottom: 1rem;">Connecting you with trusted laborers for all your needs.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Plumbing</a></li>
+                    <li><a href="#">Electrical</a></li>
+                    <li><a href="#">Cleaning</a></li>
+                    <li><a href="#">Construction</a></li>
+                    <li><a href="#">Painting</a></li>
+                    <li><a herf="#">Garbage</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Safety Tips</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Download App</h3>
+                <button class="btn btn-primary" style="margin-bottom: 1rem; width: 100%; background: #333; border: none;">
+                    <i class="fab fa-google-play"></i> Google Play
+                </button>
+                <button class="btn btn-primary" style="width: 100%; background: #333; border: none;">
+                    <i class="fab fa-apple"></i> App Store
+                </button>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 GetLabour. All rights reserved. | <a href="#" style="color: #CCCCCC;">Terms</a> | <a href="#" style="color: #CCCCCC;">Privacy</a></p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <i class="fas fa-briefcase"></i>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 style="margin-bottom: 1.5rem;">Login to GetLabour</h2>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+91 9876543210">
+            </div>
+            <button class="btn btn-primary" style="width: 100%; padding: 1rem;">Send OTP</button>
+            <div style="text-align: center; margin-top: 1rem;">
+                <p>Or login with</p>
+                <button class="btn btn-outline" style="width: 100%; margin-top: 1rem;">
+                    <i class="fab fa-google"></i> Google
+                </button>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p>New to GetLabour? <a href="#" style="color: var(--primary);">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden by default) -->
+    <div class="dashboard" style="display: none;">
+        <div class="sidebar">
+            <div style="padding: 1rem;">
+                <div style="font-weight: 600; font-size: 1.2rem;">GetLabour</div>
+                <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Customer Dashboard</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-briefcase"></i> My Jobs</a></li>
+                <li><a href="#"><i class="fas fa-heart"></i> Favorite Workers</a></li>
+                <li><a href="#"><i class="fas fa-credit-card"></i> Payments</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1 style="margin-bottom: 2rem;">Dashboard</h1>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Ongoing Jobs</h3>
+                    <p>2</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed Jobs</h3>
+                    <p>7</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Favorite Workers</h3>
+                    <p>3</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Spent</h3>
+                    <p>₹8,750</p>
+                </div>
+            </div>
+            <div class="job-list">
+                <div class="job-list-header">
+                    <h3>Recent Jobs</h3>
+                    <button class="btn btn-primary">Post New Job</button>
+                </div>
+                <ul class="job-list-items">
+                    <li class="job-item">
+                        <div class="job-info">
+                            <h4>Fix Kitchen Sink Leak</h4>
+                            <div class="job-meta">
+                                <div><i class="fas fa-user"></i> Rahul K.</div>
+                                <div><i class="fas fa-calendar-alt"></i> 15 Jun 2023</div>
+                                <div><i class="fas fa-rupee-sign"></i> ₹1,200</div>
+                            </div>
+                        </div>
+                        <div class="job-status status-ongoing">Ongoing</div>
+                    </li>
+                    <li class="job-item">
+                        <div class="job-info">
+                            <h4>Living Room Painting</h4>
+                            <div class="job-meta">
+                                <div><i class="fas fa-user"></i> Vijay S.</div>
+                                <div><i class="fas fa-calendar-alt"></i> 10 Jun 2023</div>
+                                <div><i class="fas fa-rupee-sign"></i> ₹5,000</div>
+                            </div>
+                        </div>
+                        <div class="job-status status-completed">Completed</div>
+                    </li>
+                    <li class="job-item">
+                        <div class="job-info">
+                            <h4>AC Installation</h4>
+                            <div class="job-meta">
+                                <div><i class="fas fa-user"></i> Amit P.</div>
+                                <div><i class="fas fa-calendar-alt"></i> 5 Jun 2023</div>
+                                <div><i class="fas fa-rupee-sign"></i> ₹2,500</div>
+                            </div>
+                        </div>
+                        <div class="job-status status-completed">Completed</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Worker Dashboard (Hidden by default) -->
+    <div class="dashboard" style="display: none;">
+        <div class="sidebar">
+            <div style="padding: 1rem;">
+                <div style="font-weight: 600; font-size: 1.2rem;">GetLabour</div>
+                <div style="font-size: 0.9rem; color: rgba(255,255,255,0.7);">Worker Dashboard</div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-bell"></i> Job Alerts</a></li>
+                <li><a href="#"><i class="fas fa-check-circle"></i> My Jobs</a></li>
+                <li><a href="#"><i class="fas fa-wallet"></i> Earnings</a></li>
+                <li><a href="#"><i class="fas fa-star"></i> Ratings</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Profile</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="worker-profile">
+                <div class="worker-avatar" style="background-image: url('https://randomuser.me/api/portraits/men/32.jpg');"></div>
+                <div class="worker-details">
+                    <h2>Rahul Kumar</h2>
+                    <div class="availability available">
+                        <i class="fas fa-check-circle"></i> Available for work
+                    </div>
+                    <div class="worker-rating-large">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        4.8 (127 reviews)
+                    </div>
+                    <div class="worker-skills" style="margin-bottom: 1rem;">
+                        <span class="skill-tag">Plumber</span>
+                        <span class="skill-tag">5+ Years Exp</span>
+                        <span class="skill-tag">Pipe Fitting</span>
+                        <span class="skill-tag">Bathroom Install</span>
+                    </div>
+                    <p class="worker-bio">
+                        Professional plumber with 5+ years experience in residential and commercial plumbing. 
+                        Specialized in leak repairs, pipe fitting, and bathroom installations.
+                    </p>
+                </div>
+            </div>
+            <div class="stats-cards">
+                <div class="stat-card">
+                    <h3>Jobs This Month</h3>
+                    <p>12</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Earnings</h3>
+                    <p>₹24,500</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Response Rate</h3>
+                    <p>98%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Acceptance Rate</h3>
+                    <p>92%</p>
+                </div>
+            </div>
+            <div class="job-list">
+                <div class="job-list-header">
+                    <h3>Available Jobs Near You</h3>
+                    <button class="btn btn-primary">Refresh</button>
+                </div>
+                <ul class="job-list-items">
+                    <li class="job-item">
+                        <div class="job-info">
+                            <h4>Fix Bathroom Leak</h4>
+                            <div class="job-meta">
+                                <div><i class="fas fa-map-marker-alt"></i> 1.2km away</div>
+                                <div><i class="fas fa-calendar-alt"></i> Today</div>
+                                <div><i class="fas fa-rupee-sign"></i> ₹1,500</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Accept</button>
+                            <button class="btn btn-outline">Decline</button>
+                        </div>
+                    </li>
+                    <li class="job-item">
+                        <div class="job-info">
+                            <h4>Kitchen Sink Installation</h4>
+                            <div class="job-meta">
+                                <div><i class="fas fa-map-marker-alt"></i> 2.5km away</div>
+                                <div><i class="fas fa-calendar-alt"></i> Tomorrow</div>
+                                <div><i class="fas fa-rupee-sign"></i> ₹2,800</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button class="btn btn-primary">Accept</button>
+                            <button class="btn btn-outline">Decline</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle Mobile Menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('show');
+            document.querySelector('.auth-buttons').classList.toggle('show');
+        });
+
+        // Modal Handling
+        const modal = document.getElementById('loginModal');
+        const closeBtn = document.querySelector('.close-modal');
+        
+        // Show modal when login button is clicked
+        document.querySelector('.auth-buttons .btn-outline').addEventListener('click', function() {
+            modal.style.display = 'flex';
+        });
+        
+        // Close modal when X is clicked
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Sticky CTA - Post Job
+        document.querySelector('.sticky-cta').addEventListener('click', function() {
+            alert('Post a job form will open here!');
+        });
+
+        // Simulate OTP Login
+        document.querySelector('.modal-content .btn-primary').addEventListener('click', function() {
+            alert('OTP sent to your mobile number!');
+        });
+
+        // Sample data for worker search (simulated)
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const service = document.querySelector('.search-bar input[type="text"]').value;
+            const location = document.querySelector('.search-bar input[type="text"]:nth-child(2)').value;
+            
+            if(service && location) {
+                alert(`Searching for ${service} in ${location}...`);
+                // In real app, this would filter worker cards
+            } else {
+                alert('Please enter both service and location');
+            }
+        });
+
+        // Sample dashboard toggle (for demo)
+        function showDashboard(type) {
+            document.querySelectorAll('.dashboard').forEach(dash => {
+                dash.style.display = 'none';
+            });
+            if(type === 'customer') {
+                document.querySelector('.dashboard').style.display = 'flex';
+            } else if(type === 'worker') {
+                document.querySelectorAll('.dashboard')[1].style.display = 'flex';
+            }
+        }
+
+        // Uncomment to show customer dashboard by default for demo:
+        // showDashboard('customer');
+    </script>
+</body>
+</html>
